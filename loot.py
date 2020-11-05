@@ -19,10 +19,27 @@ import random
 class Game:
     def __init__(self):
         self.players = []
+        self.cards = []
 
     def new_player(self, name):
         self.players.append(Player(name))
         return self
+
+    def all_players(self):
+        for player in self.players:
+            print(player.name)
+        return self
+
+    def make_drawpile(self):
+        card = 1
+        self.cards.append(card)
+        random.shuffle(self.cards)
+        return self
+
+
+class PirateShips:
+    def __init__(self):
+        self.card =
 
 
 class Player:
@@ -40,10 +57,11 @@ class Hand:
         return str(self)
 
 
-def make_drawpile():
-    pass
-
-
 def start_game():
-    drawpile = make_drawpile()
-    random.shuffle(drawpile)
+    the_game = Game()
+    the_game.make_drawpile()
+
+
+game1 = Game()
+game1.new_player("monica").new_player("rachel")
+game1.all_players()
