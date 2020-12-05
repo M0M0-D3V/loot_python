@@ -3,7 +3,7 @@
 # TO DO:
 # [x] Identify the various classes we need to make
 # [x] Player class
-# [] Cards class
+# [x] Cards class
 # [x] Ranks - 13 total: each color has 2 ones, 4 twos, 4 threes, and 2 fours, and 1 pirate Captain
 # [x] Colors - blue, green, purple, and gold
 # [x] Merchant Ships class
@@ -19,9 +19,14 @@ import random
 class Player:
     def __init__(self, name):
         self.name = name
-        self.hand = []
+        self.hand = []  # hand is created from Game.deal()
         self.total = 0
         self.merchant_ships = []
+
+    def play_a_turn(self):
+        # Do an imput for "play merchant ship", "attack merchant"
+        # draw_card()
+        pass
 
     def draw_card(self):
         pass
@@ -33,6 +38,7 @@ class Player:
         pass
 
     def show_hand(self):
+        print(f"{self.name}'s hand:")
         for card in self.hand:
             if card.card_type == "Merchant Ship":
                 print(f"{card.card_type} - {card.rank}")
@@ -77,6 +83,12 @@ class Game:
         print(f'{self.number_of_players} players:')
         for player in self.players:
             print(player.name)
+        return self
+
+    def turn_order(self):
+        print(f"The order of play will be:")
+        for player in self.players:
+            print(player)
         return self
 
     def make_drawpile(self):
@@ -142,7 +154,7 @@ class Game:
                 player.hand.append(popped)
         return self
 
-    def start(self):
+    def setup(self):
         self.number_of_players = input("Number of Players: ")
         self.get_players()
         self.all_players()
@@ -153,6 +165,15 @@ class Game:
         self.get_cards_in_drawpile()
         self.deal()
 
+    def start(self):
+        self.turn_order()
+        for player in self.players:
+            if len(self.draw_pile) > 0:
+                print(f"{player.name}'s turn...")
+                player.play_a_turn()
+        return self
+
 
 game1 = Game()
+game1.setup()
 game1.start()
