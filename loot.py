@@ -1,11 +1,11 @@
 # OOP practice to make text based LOOT game
 
 # TO DO:
-# [] Identify the various classes we need to make
-# [] Player class
+# [x] Identify the various classes we need to make
+# [x] Player class
 # [] Cards class
-# [] Ranks - 13 total: each color has 2 ones, 4 twos, 4 threes, and 2 fours, and 1 pirate Captain
-# [] Colors - blue, green, purple, and gold
+# [x] Ranks - 13 total: each color has 2 ones, 4 twos, 4 threes, and 2 fours, and 1 pirate Captain
+# [x] Colors - blue, green, purple, and gold
 # [] Merchant Ships class
 # [] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
 # [] Identify other global functions to run the game
@@ -15,11 +15,13 @@
 import random
 
 
+# [x] Player class
 class Player:
     def __init__(self, name):
         self.name = name
         self.hand = []
         self.total = 0
+        self.merchant_ships = []
 
     def draw_card(self):
         pass
@@ -38,18 +40,25 @@ class Card:
         self.rank = rank
 
     def show_card(self):
-        print(f"{self.rank} of {self.color}")
+        if self.rank == "Admiral":
+            print(f"{self.rank}")
+        if self.card_type == "Merchant Ship":
+            print(f"{self.card_type} of {self.rank} value")
+        else:
+            print(f"{self.rank} of {self.color}")
+        return self
 
 
 class Game:
-    def __init__(self, number_of_players):
-        self.number_of_players = number_of_players
+    def __init__(self):
+        self.number_of_players = 0
         self.players = []
         self.draw_pile = []
+        self.play_field = []
         self.discard_pile = []
 
     def get_players(self):
-        for i in range(self.number_of_players):
+        for i in range(int(self.number_of_players)):
             name = input(f'Player {i+1} Enter your name:')
             self.players.append(Player(name))
         return self
@@ -61,30 +70,76 @@ class Game:
         return self
 
     def make_drawpile(self):
+        # ***************************
         # first append all the pirate cards
+        # [x] Ranks - 13 total: each color has 2 ones, 4 twos, 4 threes, and 2 fours, and 1 pirate Captain
+        card_type = "Pirate Ship"
         for color in ["Blue", "Green", "Purple", "Gold"]:
-            self.draw_pile.append(Card(card_type, color, rank))
+            for i in range(2):
+                rank = 1
+                self.draw_pile.append(Card(card_type, color, rank))
+            for i in range(4):
+                rank = 2
+                self.draw_pile.append(Card(card_type, color, rank))
+            for i in range(4):
+                rank = 3
+                self.draw_pile.append(Card(card_type, color, rank))
+            for i in range(2):
+                rank = 4
+                self.draw_pile.append(Card(card_type, color, rank))
+            self.draw_pile.append(Card(card_type, color, "Captain"))
+        # ***************************
         # next append all the merchant ships
-        random.shuffle(self.draw_pile)
+        # [] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
+        card_type = "Merchant Ship"
+        color = None
+        for i in range(5):
+            rank = 2
+            self.draw_pile.append(Card(card_type, color, rank))
+        for i in range(6):
+            rank = 3
+            self.draw_pile.append(Card(card_type, color, rank))
+        for i in range(5):
+            rank = 4
+            self.draw_pile.append(Card(card_type, color, rank))
+        for i in range(5):
+            rank = 5
+            self.draw_pile.append(Card(card_type, color, rank))
+        self.draw_pile.append(Card(card_type, color, 6))
+        self.draw_pile.append(Card(card_type, color, 6))
+        self.draw_pile.append(Card(card_type, color, 7))
+        self.draw_pile.append(Card(card_type, color, 8))
+        # ******************************
+        # Add the Admiral
+        self.draw_pile.append(Card("Admiral", None, None))
+        # ******************************
         return self
 
-    def pass_starting_cards(self):
+    def get_cards_in_drawpile(self):
+        for card in self.draw_pile:
+            if card.card_type == "Merchant Ship":
+                print(f"{card.card_type} - {card.rank}")
+            if card.card_type == "Admiral":
+                print(f"{card.card_type}")
+            if card.card_type == "Pirate Ship":
+                print(f"{card.card_type} - {card.color} {card.rank}")
+        return self
+
+    def deal(self):
         pass
 
     def start(self):
+        self.number_of_players = input("Number of Players: ")
         self.get_players()
         self.all_players()
-        # self.make_drawpile()
-        # self.pass_starting_cards()
-        # class Hand:
-        #     def __init__(self):
-        #         self.cards = []
+        self.make_drawpile()
+        # self.get_cards_in_drawpile()
+        random.shuffle(self.draw_pile)
+        print("*"*20)
+        self.get_cards_in_drawpile()
 
-        # def __repr__(self):
-        #     return str(self)
+        # self.deal()
 
 
-game1 = Game(2)
+game1 = Game()
 game1.start()
-# game1.new_player("monica").new_player("rachel")
-# game1.all_players()
