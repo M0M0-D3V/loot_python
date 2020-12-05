@@ -6,10 +6,10 @@
 # [] Cards class
 # [x] Ranks - 13 total: each color has 2 ones, 4 twos, 4 threes, and 2 fours, and 1 pirate Captain
 # [x] Colors - blue, green, purple, and gold
-# [] Merchant Ships class
-# [] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
-# [] Identify other global functions to run the game
-# [] Build Deck method
+# [x] Merchant Ships class
+# [x] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
+# [x] Identify other global functions to run the game
+# [x] Build Deck method
 # [] Turn phase method
 # [] Figure this shit out~ Merchant Seige event....
 import random
@@ -31,6 +31,16 @@ class Player:
 
     def attack_merchant_ship(self, merchant, pirate):
         pass
+
+    def show_hand(self):
+        for card in self.hand:
+            if card.card_type == "Merchant Ship":
+                print(f"{card.card_type} - {card.rank}")
+            if card.card_type == "Admiral":
+                print(f"{card.card_type}")
+            if card.card_type == "Pirate Ship":
+                print(f"{card.card_type} - {card.color} {card.rank}")
+        return self
 
 
 class Card:
@@ -90,7 +100,7 @@ class Game:
             self.draw_pile.append(Card(card_type, color, "Captain"))
         # ***************************
         # next append all the merchant ships
-        # [] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
+        # [x] Values - 5 twos, 6 threes, 5 fours, 5 fives, 2 sixes, 1 seven, and 1 eight
         card_type = "Merchant Ship"
         color = None
         for i in range(5):
@@ -126,7 +136,11 @@ class Game:
         return self
 
     def deal(self):
-        pass
+        for i in range(6):
+            for player in self.players:
+                popped = self.draw_pile.pop()
+                player.hand.append(popped)
+        return self
 
     def start(self):
         self.number_of_players = input("Number of Players: ")
@@ -137,8 +151,7 @@ class Game:
         random.shuffle(self.draw_pile)
         print("*"*20)
         self.get_cards_in_drawpile()
-
-        # self.deal()
+        self.deal()
 
 
 game1 = Game()
