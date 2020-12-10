@@ -26,16 +26,33 @@ class Player:
     def play_a_turn(self):
         # Do an imput for "play merchant ship", "attack merchant"
         # draw_card()
-        pass
+        print("1 - Play a merchant ship")
+        print("2 - Attack a merchant ship")
+        move = input("Choose 1 or 2: ")
+        # ****************************************
+        # figure this out
+        if move == "1":
+            merchant_card = "uhh i dunno"
+            self.play_merchant_ship(merchant_card)
+        if move == "2":
+            merchant_card = "something else"
+            pirate = "pick something else"
+            self.attack_merchant_ship(merchant_card, pirate)
+        # ****************************************
+        self.draw_card()
+        return self
 
     def draw_card(self):
-        pass
+        print('called the draw_card() function.... but it isn\'t built yet')
+        return self
 
     def play_merchant_ship(self, merchant_card):
-        pass
+        print("playing a merchant ship")
+        return self
 
     def attack_merchant_ship(self, merchant, pirate):
-        pass
+        print("attacking a merchant ship")
+        return self
 
     def show_hand(self):
         print(f"{self.name}'s hand:")
@@ -88,7 +105,7 @@ class Game:
     def turn_order(self):
         print(f"The order of play will be:")
         for player in self.players:
-            print(player)
+            print(player.name)
         return self
 
     def make_drawpile(self):
