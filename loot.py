@@ -11,6 +11,7 @@
 # [x] Identify other global functions to run the game
 # [x] Build Deck method
 # [] Turn phase method
+# [] PLAY A TURN PLAYER METHOD
 # [] Figure this shit out~ Merchant Seige event....
 import random
 
@@ -21,33 +22,52 @@ class Player:
         self.name = name
         self.hand = []  # hand is created from Game.deal()
         self.total = 0
-        self.merchant_ships = []
+        self.last_played = None
 
     def play_a_turn(self):
+        # player should be able to see what cards they have in their hand to decide if they want to play a card vs attack
+        self.show_hand()
         # Do an imput for "play merchant ship", "attack merchant"
         # draw_card()
         print("1 - Play a merchant ship")
         print("2 - Attack a merchant ship")
-        move = input("Choose 1 or 2: ")
+        print("3 - Draw a card")
+        move = input("Choose 1, 2, or 3: ")
         # ****************************************
         # figure this out
         if move == "1":
-            merchant_card = "uhh i dunno"
-            self.play_merchant_ship(merchant_card)
+            # should check if player has a merchant ship in hand first
+            merchants_in_hand = []
+            for card in self.hand:
+                if "Merchant Ship" == card.card_type:
+                    merchants_in_hand.append(card)
+            print(f"{self.name} chose to play a merchant ship")
+            if len(merchants_in_hand) > 0:
+                self.play_merchant_ship(merchants_in_hand)
+            else:
+                print("you don't have a merchant ship in your hand, pick 2 instead")
+                move = "2"
         if move == "2":
             merchant_card = "something else"
             pirate = "pick something else"
             self.attack_merchant_ship(merchant_card, pirate)
         # ****************************************
-        self.draw_card()
+        # self.draw_card()
         return self
 
     def draw_card(self):
         print('called the draw_card() function.... but it isn\'t built yet')
         return self
 
-    def play_merchant_ship(self, merchant_card):
-        print("playing a merchant ship")
+    def play_merchant_ship(self, merchants_in_hand):
+        print(f"{self.name}, choose a merchant card from your hand")
+        for i in range(len(merchants_in_hand)):
+            print(
+                f"#{i} - {merchants_in_hand[i].card_type} - {merchants_in_hand[i].rank} gold")
+        chosen_merchant = merchants_in_hand[int(input(f"choose a number:"))]
+        print(
+            f"{self.name} plays {chosen_merchant.card_type} - {chosen_merchant.rank}")
+        self.last_played = chosen_merchant
         return self
 
     def attack_merchant_ship(self, merchant, pirate):
@@ -87,7 +107,17 @@ class Game:
         self.number_of_players = 0
         self.players = []
         self.draw_pile = []
-        self.play_field = []
+        # each to the play_fiend append should be a nested object with a lit of object attacking pirates which
+        self.play_field = {
+            'Merchant Ships':
+            [
+
+            ],
+            'Players Attacking':
+                [
+                    {'Player Name': ""},
+            ]
+        }
         self.discard_pile = []
 
     def get_players(self):
@@ -103,6 +133,7 @@ class Game:
         return self
 
     def turn_order(self):
+        # maybe shuffle this list later?
         print(f"The order of play will be:")
         for player in self.players:
             print(player.name)
@@ -178,6 +209,7 @@ class Game:
         self.make_drawpile()
         # self.get_cards_in_drawpile()
         random.shuffle(self.draw_pile)
+        random.shuffle(self.draw_pile)
         print("*"*20)
         self.get_cards_in_drawpile()
         self.deal()
@@ -187,7 +219,8 @@ class Game:
         for player in self.players:
             if len(self.draw_pile) > 0:
                 print(f"{player.name}'s turn...")
-                player.play_a_turn()
+                something = player.play_a_turn()
+                print(f"got something {something}")
         return self
 
 
