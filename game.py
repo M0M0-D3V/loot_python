@@ -33,7 +33,7 @@ class Player:
             # should check if player has a merchant ship in hand first
             merchants_in_hand = []
             for card in self.hand:
-                if "Merchant Ship" == card.card_type:
+                if card.card_type == "Merchant Ship":
                     merchants_in_hand.append(card)
             print(f"{self.name} chose to play a merchant ship")
             if len(merchants_in_hand) > 0:
@@ -215,6 +215,7 @@ class Game:
     def start(self):
         this_game = self
         self.turn_order()
+        # while loop instead
         for player in self.players:
             if len(self.draw_pile) > 0:
                 print(f"{player.name}'s turn...")
