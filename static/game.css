@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0.5px dotted pink;
+  font-family: sans-serif;
+}
+html {
+  min-height: 100%;
+}
+body {
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  background-color: rgb(19, 81, 92);
+  color: whitesmoke;
+}
+h1 {
+  margin-top: 30px;
+  color: goldenrod;
+  text-align: center;
+}
+#players {
+  margin-bottom: 20px;
+}
+#players p {
+  margin: 10px;
+}
+p.lead {
+  font-weight: bold;
+}
+#board {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+#actions {
+  padding: 10px;
+  height: 175px;
+}
+#draw-pile,
+#discard-pile {
+  display: inline-block;
+  width: 25%;
+  margin-bottom: 20px;
+  padding: 10px;
+  height: 130px;
+}
+#merchant-ships {
+  padding: 10px;
+  margin-bottom: 20px;
+  height: 370px;
+}
+span {
+  color: greenyellow;
+  font-weight: bold;
+}

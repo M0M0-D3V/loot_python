@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='game.css') }}">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loot!</title>
-</head>
-<body>
-    <h1>made it</h1>
-</body>
+  </head>
+  <body>
+    <h1>Let's Play</h1>
+    <div id="players">
+      {% for player in players %}
+      <p class="lead">{{ player['player_name'] }}
+          {% if player['isTurn'] == True %}
+          <span>Turn to Play</span>
+          {% endif %}
+      </p>
+      {% endfor %}
+    </div>
+    <div id="board">
+        <div id="draw-pile">
+            {% for card in game['draw_pile'] %}
+                <div class="cards">{{ card.card_type }}</div>
+            {% endfor %}
+        </div>
+        <div id="discard-pile">discard pile</div>
+        <div id="merchant-ships">merchant ships</div>
+        <div id="actions">actions</div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='game.js') }}"></script>
+  </body>
 </html>

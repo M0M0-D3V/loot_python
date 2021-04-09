@@ -16,4 +16,5 @@
     - Play pirate / captain / admiral
     - Draw card
 
-## 4. Attack 
+## 4. Attack Merchant Ship
+- 

@@ -5,11 +5,30 @@
   outline: 0.5px dotted pink;
   font-family: sans-serif;
 }
+h2 {
+  color: goldenrod;
+}
 body {
   margin: 10% auto;
   width: 80%;
   text-align: center;
+  background-color: rgb(19, 81, 92);
+  color: whitesmoke;
 }
 #player-input {
   display: none;
+}
+p#warning {
+  display: none;
+  color: red;
+}
+button {
+  background-color: goldenrod;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+input {
+  line-height: 20pt;
+  margin-bottom: 5px;
 }

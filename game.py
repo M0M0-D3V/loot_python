@@ -225,6 +225,6 @@ class Game:
         return self
 
 
-game1 = Game()
-game1.setup()
-game1.start()
+# game1 = Game()
+# game1.setup()
+# game1.start()
