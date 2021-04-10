@@ -1,7 +1,12 @@
+from game import Game
 from flask import Flask, render_template, request, redirect, session
 from game import Player, Card, Game
+import random
 app = Flask(__name__)
 app.secret_key = 'secretpasswordislootgame'
+
+global game
+game = Game()
 
 
 @app.route('/')
@@ -11,6 +16,10 @@ def index():
 
 @app.route('/player_names', methods=['POST'])
 def initialize_players():
+    global game
+    game.make_drawpile()
+    random.shuffle(game.draw_pile)
+    random.shuffle(game.draw_pile)
     print("Got post info")
     print(request.form)
     session['num_players'] = int(request.form['num_players'])
@@ -23,18 +32,16 @@ def initialize_players():
                 'player_name': request.form['player_name_' + str(i)],
                 'isTurn': False,
             })
-    print(f"player names is {session['player_names']}")
     session['players'][0]['isTurn'] = True
+    print(f"player info is {session['players']}")
     # [] start new game and apply changes
-    session['game'] = {}
     return redirect("/game")
 
 
 @ app.route("/game")
 def start_game():
-    game = Game()
-    session['game']['draw_pile'] = game.make_drawpile()
-    return render_template("game.html", players=session['players'], num=session['num_players'], game=session['game'])
+    global game
+    return render_template("game.html", players=session['players'], num=session['num_players'], draw_pile=game.draw_pile)
 
 
 if __name__ == "__main__":

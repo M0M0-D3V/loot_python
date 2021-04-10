@@ -11,7 +11,7 @@ $(document).ready(function () {
     console.log("preventing default reload");
     var $numPlayers = $("#input-num").val();
     console.log(`numPlayers is: ${$numPlayers}`);
-    if ($numPlayers < 1 || $numPlayers > 5) {
+    if ($numPlayers < 1 || $numPlayers > 8) {
       $("#warning").show();
     } else {
       $("#num-players").hide();

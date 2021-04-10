@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='game.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='game.css') }}"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,23 +16,33 @@
     <h1>Let's Play</h1>
     <div id="players">
       {% for player in players %}
-      <p class="lead">{{ player['player_name'] }}
-          {% if player['isTurn'] == True %}
-          <span>Turn to Play</span>
-          {% endif %}
+      <p class="lead">
+        {{ player['player_name'] }} {% if player['isTurn'] == True %}
+        <span>Turn to Play</span>
+        {% endif %}
       </p>
       {% endfor %}
     </div>
     <div id="board">
-        <div id="draw-pile">
-            {% for card in game['draw_pile'] %}
-                <div class="cards">{{ card.card_type }}</div>
-            {% endfor %}
+      <div id="draw-pile">
+        <div class="cards">
+          Draw Cards {% for card in draw_pile %}
+          <div class="card">{{ card.card_type }}</div>
+          {% endfor %}
         </div>
-        <div id="discard-pile">discard pile</div>
-        <div id="merchant-ships">merchant ships</div>
-        <div id="actions">actions</div>
+      </div>
+      <div id="discard-pile">
+        <div class="cards">
+          Discard
+          <div class="card">{ card.card_type }</div>
+        </div>
+      </div>
+      <div id="merchant-ships">merchant ships</div>
+      <div id="actions">actions</div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='game.js') }}"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='game.js') }}"
+    ></script>
   </body>
 </html>

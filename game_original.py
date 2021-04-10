@@ -1,4 +1,14 @@
+# OOP practice to make text based LOOT game
+
+# TO DO:
+# [x] Identify other global functions to run the game
+# [x] Turn phase method
+# [] PLAY A TURN PLAYER METHOD
+# [] Play a card onto the playfield
+# [] Figure this shit out~ Merchant Seige event....
 import random
+
+# [x] Player class
 
 
 class Player:
@@ -11,6 +21,8 @@ class Player:
     def play_a_turn(self, game):
         # player should be able to see what cards they have in their hand to decide if they want to play a card vs attack
         self.show_hand()
+        # Do an imput for "play merchant ship", "attack merchant"
+        # draw_card()
         print("1 - Play a merchant ship")
         print("2 - Attack a merchant ship")
         print("3 - Draw a card")

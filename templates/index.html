@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,13 +15,16 @@
   <body>
     <h2 id="title">Start Game</h2>
     <div id="player-input">
-        <form id="num-players">
-            <label>How many players? Between 2-5</label>
-            <input id="input-num" type="number" placeholder="e.g. 2" />
-            <p id="warning">Number needs to be between 2 and 5</p>
-            <button type="submit">Enter</button>
-        </form>
+      <form id="num-players">
+        <label>How many players? Between 2-8</label>
+        <input id="input-num" type="number" placeholder="e.g. 2" />
+        <p id="warning">Number needs to be between 2 and 8</p>
+        <button type="submit">Enter</button>
+      </form>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='script.js') }}"
+    ></script>
   </body>
 </html>

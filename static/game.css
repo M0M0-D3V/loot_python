@@ -39,6 +39,27 @@ p.lead {
   padding: 10px;
   height: 175px;
 }
+.cards {
+  position: relative;
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+}
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+  background-color: lemonchiffon;
+  opacity: 0.5;
+  color: black;
+  border: 1px solid black;
+  border-radius: 15px;
+  /* top: var(--space-sm); */
+  /* transform-origin: center top; */
+}
 #draw-pile,
 #discard-pile {
   display: inline-block;
