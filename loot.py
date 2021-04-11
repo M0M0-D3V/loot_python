@@ -16,32 +16,29 @@ def index():
 
 @app.route('/player_names', methods=['POST'])
 def initialize_players():
+    # [x] start new game and apply changes
     global game
     game.make_drawpile()
     random.shuffle(game.draw_pile)
     random.shuffle(game.draw_pile)
     print("Got post info")
     print(request.form)
-    session['num_players'] = int(request.form['num_players'])
-    print(f"number of players is.... {session['num_players']}")
+    game.number_of_players = int(request.form['num_players'])
+    session['num_players'] = game.number_of_players
+    # [x] call create player
+    game.get_players(request.form)
+    print(f"printing players from game info: {game.players}")
     # [x] store players in session
-    session['players'] = []
-    for i in range(1, session['num_players']+1):
-        session['players'].append(
-            {
-                'player_name': request.form['player_name_' + str(i)],
-                'isTurn': False,
-            })
-    session['players'][0]['isTurn'] = True
-    print(f"player info is {session['players']}")
-    # [] start new game and apply changes
+    game.players[0].isTurn = True
+    # [x] give players hand
+    game.deal()
     return redirect("/game")
 
 
 @ app.route("/game")
 def start_game():
     global game
-    return render_template("game.html", players=session['players'], num=session['num_players'], draw_pile=game.draw_pile)
+    return render_template("game.html", players=game.players, num=session['num_players'], draw_pile=game.draw_pile)
 
 
 if __name__ == "__main__":

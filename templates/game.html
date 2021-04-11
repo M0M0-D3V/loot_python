@@ -17,7 +17,7 @@
     <div id="players">
       {% for player in players %}
       <p class="lead">
-        {{ player['player_name'] }} {% if player['isTurn'] == True %}
+        {{ player.name }} {% if player.isTurn == True %}
         <span>Turn to Play</span>
         {% endif %}
       </p>
@@ -38,7 +38,10 @@
         </div>
       </div>
       <div id="merchant-ships">merchant ships</div>
-      <div id="actions">actions</div>
+      <div id="actions">
+        <h4>Actions</h4>
+        <div class="player_cards">current player's hand show here</div>
+      </div>
     </div>
     <script
       type="text/javascript"

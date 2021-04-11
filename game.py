@@ -7,6 +7,7 @@ class Player:
         self.hand = []  # hand is created from Game.deal()
         self.total = 0
         self.last_played = None
+        self.isTurn = False
 
     def play_a_turn(self, game):
         # player should be able to see what cards they have in their hand to decide if they want to play a card vs attack
@@ -100,16 +101,19 @@ class Game:
 
             ],
             'Players Attacking':
-                [
-                    {'Player Name': ""},
+            [
+                {
+                    'player_name': "",
+                    'attacking_color': "",
+                    'player_total': 0
+                },
             ]
         }
         self.discard_pile = []
 
-    def get_players(self):
+    def get_players(self, from_form):
         for i in range(int(self.number_of_players)):
-            name = input(f'Player {i+1} Enter your name:')
-            self.players.append(Player(name))
+            self.players.append(Player(from_form['player_name_' + str(i+1)]))
         return self
 
     def all_players(self):
