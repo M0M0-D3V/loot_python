@@ -35,7 +35,7 @@ def initialize_players():
     return redirect("/game")
 
 
-@ app.route("/game")
+@app.route("/game")
 def start_game():
     global game
     return render_template("game.html", players=game.players, num=session['num_players'], draw_pile=game.draw_pile)

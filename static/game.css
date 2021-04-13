@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 0.5px dotted pink;
+  /* outline: 0.5px dotted pink; */
   font-family: sans-serif;
 }
 html {
@@ -14,6 +14,8 @@ body {
   height: 100%;
   background-color: rgb(19, 81, 92);
   color: whitesmoke;
+  border-radius: 15px;
+  border: 0.5px solid lemonchiffon;
 }
 h1 {
   margin-top: 30px;
@@ -33,12 +35,10 @@ p.lead {
   width: 100%;
   margin: 0 auto;
   padding: 10px;
+  border-top: 0.5px solid whitesmoke;
   text-align: center;
 }
-#actions {
-  padding: 10px;
-  height: 175px;
-}
+
 .cards {
   position: relative;
   height: 100px;
@@ -67,11 +67,33 @@ p.lead {
   margin-bottom: 20px;
   padding: 10px;
   height: 130px;
+  /* border-top: 0.5px solid whitesmoke; */
 }
 #merchant-ships {
   padding: 10px;
   margin-bottom: 20px;
   height: 370px;
+  border-top: 0.5px solid whitesmoke;
+  border-bottom: 0.5px solid whitesmoke;
+}
+#actions {
+  padding: 10px;
+  height: 175px;
+}
+.player_cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+.hand {
+  width: 15%;
+  margin-top: 20px;
+  height: 120px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: blue;
+}
+.hand p {
 }
 span {
   color: greenyellow;

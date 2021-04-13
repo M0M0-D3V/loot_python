@@ -25,22 +25,33 @@
     </div>
     <div id="board">
       <div id="draw-pile">
+        <p>Draw</p>
         <div class="cards">
-          Draw Cards {% for card in draw_pile %}
+          {% for card in draw_pile %}
           <div class="card">{{ card.card_type }}</div>
           {% endfor %}
         </div>
       </div>
       <div id="discard-pile">
+        <p>Discard</p>
         <div class="cards">
-          Discard
           <div class="card">{ card.card_type }</div>
         </div>
       </div>
       <div id="merchant-ships">merchant ships</div>
       <div id="actions">
         <h4>Actions</h4>
-        <div class="player_cards">current player's hand show here</div>
+        <div class="player_cards">
+          {% for player in players %}
+            {% if player.isTurn == True %}
+              {% for card in player.hand %}  
+                <div class="hand">
+                  <p>{{ card.card_type }}</p>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
     <script
