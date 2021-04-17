@@ -41,5 +41,12 @@ def start_game():
     return render_template("game.html", players=game.players, num=session['num_players'], draw_pile=game.draw_pile)
 
 
+@app.route("/shuffle")
+def shuffle_cards():
+    global game
+    random.shuffle(game.draw_pile)
+    return redirect("/game")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

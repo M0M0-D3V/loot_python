@@ -22,6 +22,9 @@
         {% endif %}
       </p>
       {% endfor %}
+      <div id="options">
+        <a href="/shuffle"><button>Shuffle Draw Pile</button></a>
+      </div>
     </div>
     <div id="board">
       <div id="draw-pile">
@@ -42,15 +45,12 @@
       <div id="actions">
         <h4>Actions</h4>
         <div class="player_cards">
-          {% for player in players %}
-            {% if player.isTurn == True %}
-              {% for card in player.hand %}  
-                <div class="hand">
-                  <p>{{ card.card_type }}</p>
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endfor %}
+          {% for player in players %} {% if player.isTurn == True %} {% for card
+          in player.hand %}
+          <div class="hand">
+            <p>{{ card.card_type }}</p>
+          </div>
+          {% endfor %} {% endif %} {% endfor %}
         </div>
       </div>
     </div>

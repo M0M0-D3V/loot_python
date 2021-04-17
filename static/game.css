@@ -28,6 +28,9 @@ h1 {
 #players p {
   margin: 10px;
 }
+#options {
+  display: inline-block;
+}
 p.lead {
   font-weight: bold;
 }
