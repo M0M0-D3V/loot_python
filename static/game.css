@@ -22,14 +22,16 @@ h1 {
   color: goldenrod;
   text-align: center;
 }
-#players {
+#players-area {
   margin-bottom: 20px;
+  display: flex;
 }
-#players p {
+#players-area p {
   margin: 10px;
 }
 #options {
-  display: inline-block;
+  display: flex;
+  justify-content: flex-end;
 }
 p.lead {
   font-weight: bold;
@@ -83,7 +85,7 @@ p.lead {
   padding: 10px;
   height: 175px;
 }
-.player_cards {
+.player-cards {
   display: flex;
   justify-content: space-evenly;
 }
@@ -97,6 +99,9 @@ p.lead {
   background-color: blue;
 }
 .hand p {
+}
+.player-choose {
+  background-color: coral;
 }
 span {
   color: greenyellow;

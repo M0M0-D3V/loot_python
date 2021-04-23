@@ -14,16 +14,20 @@
   </head>
   <body>
     <h1>Let's Play</h1>
-    <div id="players">
-      {% for player in players %}
-      <p class="lead">
-        {{ player.name }} {% if player.isTurn == True %}
-        <span>Turn to Play</span>
-        {% endif %}
-      </p>
-      {% endfor %}
+    <div id="players-area">
+      <div id="players">
+        {% for player in players %}
+        <p class="lead">
+          {{ player.name }} {% if player.isTurn == True %}
+          <span>Turn to Play</span>
+          {% endif %}
+        </p>
+        {% endfor %}
+      </div>
       <div id="options">
-        <a href="/shuffle"><button>Shuffle Draw Pile</button></a>
+        <a id="shuffle-button" href="/shuffle"
+          ><button>Shuffle Draw Pile</button></a
+        >
       </div>
     </div>
     <div id="board">
@@ -44,11 +48,19 @@
       <div id="merchant-ships">merchant ships</div>
       <div id="actions">
         <h4>Actions</h4>
-        <div class="player_cards">
+        <div class="player-cards">
           {% for player in players %} {% if player.isTurn == True %} {% for card
           in player.hand %}
           <div class="hand">
-            <p>{{ card.card_type }}</p>
+            <form action="/player_action" method="POST">
+              <p class="card-type">{{ card.card_type }}</p>
+              {% if card.card_type == "Merchant Ship" %}
+              <p class="card-rank">{{ card.rank }} - Gold</p>
+              {% endif %} {% if card.card_type == "Pirate Ship" %}
+              <p class="card-rank">{{ card.rank }} - {{ card.color }}</p>
+              {% endif %}
+              <input type="hidden" />
+            </form>
           </div>
           {% endfor %} {% endif %} {% endfor %}
         </div>

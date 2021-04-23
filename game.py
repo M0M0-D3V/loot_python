@@ -80,12 +80,12 @@ class Card:
         self.rank = rank
 
     def show_card(self):
-        if self.rank == "Admiral":
-            print(f"{self.rank}")
+        if self.card_type == "Admiral":
+            print(f"{self.card_type}")
         if self.card_type == "Merchant Ship":
             print(f"{self.card_type} of {self.rank} value")
         else:
-            print(f"{self.rank} of {self.color}")
+            print(f"{self.rank}, {self.color} pirates")
         return self
 
 
