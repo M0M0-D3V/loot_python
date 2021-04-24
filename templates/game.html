@@ -50,7 +50,9 @@
       </div>
       <div id="merchant-ships">
         <p>merchant ships</p>
-        {% for merchant in play_field %} {% else %}
+        {% for merchant in play_field %}
+        <div class="merchant">{{ merchant.card_type }} - {{ merchant.rank }} - Gold</div>
+        {% else %}
         <h5 id="play-merchant">No Merchant ships in play</h5>
         {% endfor %}
       </div>
@@ -65,7 +67,7 @@
         <div class="player-cards">
           {% for card in player.hand %}
           <div class="hand">
-            <p>card place in hand: {{loop.index0}}</p>
+            <p class="number">{{loop.index0}}</p>
             {% if card.card_type == "Merchant Ship" %}
               <p class="card-rank merchant">{{ card.card_type }} {{ card.rank }} - Gold</p>
             {% endif %}
@@ -75,9 +77,9 @@
             {% if card.card_type == "Admiral" %}
             <p class="card-rank admiral">{{ card.card_type }}</p>
             {% endif %}
-              <input type="hidden" name="card_index" value="{{loop.index0}}" />
           </div>
           {% endfor %}
+          <input type="hidden" name="card_index" value="{{loop.index0}}" />
         </div>
         </form>
           {% endif %} {% endfor %}
