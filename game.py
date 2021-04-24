@@ -95,20 +95,7 @@ class Game:
         self.players = []
         self.draw_pile = []
         # each to the play_fiend append should be a nested object with a lit of object attacking pirates which
-        self.play_field = {
-            'Merchant Ships':
-            [
-
-            ],
-            'Players Attacking':
-            [
-                {
-                    'player_name': "",
-                    'attacking_color': "",
-                    'player_total': 0
-                },
-            ]
-        }
+        self.play_field = []
         self.discard_pile = []
 
     def get_players(self, from_form):

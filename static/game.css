@@ -47,7 +47,7 @@ p.lead {
 .cards {
   position: relative;
   height: 100px;
-  width: 200px;
+  width: 180px;
   padding: 10px;
 }
 .card {
@@ -55,7 +55,7 @@ p.lead {
   top: 0;
   left: 0;
   height: 100px;
-  width: 200px;
+  width: 180px;
   padding: 10px;
   background-color: lemonchiffon;
   opacity: 0.5;
@@ -68,7 +68,7 @@ p.lead {
 #draw-pile,
 #discard-pile {
   display: inline-block;
-  width: 25%;
+  width: 200px;
   margin-bottom: 20px;
   padding: 10px;
   height: 130px;
@@ -89,19 +89,44 @@ p.lead {
   display: flex;
   justify-content: space-evenly;
 }
+.player-action {
+}
 .hand {
-  width: 15%;
+  width: 100px;
   margin-top: 20px;
   height: 120px;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid black;
   border-radius: 15px;
   background-color: blue;
+  /* display: inline-block; */
+  /* vertical-align: top; */
 }
 .hand p {
 }
 .player-choose {
   background-color: coral;
+}
+.merchant {
+  background-color: darkorange;
+}
+.pirate {
+  background-color: red;
+}
+.Purple {
+  background-color: indigo;
+}
+.Green {
+  background-color: green;
+}
+.Blue {
+  background-color: dodgerblue;
+}
+.Gold {
+  background-color: goldenrod;
+}
+.admiral {
+  background-color: maroon;
 }
 span {
   color: greenyellow;

@@ -28,6 +28,9 @@
         <a id="shuffle-button" href="/shuffle"
           ><button>Shuffle Draw Pile</button></a
         >
+        <a id="newgame-button" href="/newgame"
+          ><button>New Game</button></a
+        >
       </div>
     </div>
     <div id="board">
@@ -45,27 +48,40 @@
           <div class="card">{ card.card_type }</div>
         </div>
       </div>
-      <div id="merchant-ships">merchant ships</div>
+      <div id="merchant-ships">
+        <p>merchant ships</p>
+        {% for merchant in play_field %} {% else %}
+        <h5 id="play-merchant">No Merchant ships in play</h5>
+        {% endfor %}
+      </div>
       <div id="actions">
         <h4>Actions</h4>
+        {% for player in players %} {% if player.isTurn == True %}
+        <form
+        class="player-action"
+        action="/player_action/{{loop.index0}}"
+        method="POST"
+        >
         <div class="player-cards">
-          {% for player in players %} {% if player.isTurn == True %} {% for card
-          in player.hand %}
+          {% for card in player.hand %}
           <div class="hand">
-            <form action="/player_action" method="POST">
-              <p class="card-type">{{ card.card_type }}</p>
-              {% if card.card_type == "Merchant Ship" %}
-              <p class="card-rank">{{ card.rank }} - Gold</p>
-              {% endif %} {% if card.card_type == "Pirate Ship" %}
-              <p class="card-rank">{{ card.rank }} - {{ card.color }}</p>
-              {% endif %}
-              <input type="hidden" />
-            </form>
+            <p>card place in hand: {{loop.index0}}</p>
+            {% if card.card_type == "Merchant Ship" %}
+              <p class="card-rank merchant">{{ card.card_type }} {{ card.rank }} - Gold</p>
+            {% endif %}
+            {% if card.card_type == "Pirate Ship" %}
+              <p class="card-rank pirate {{ card.color }}">{{ card.card_type }} {{ card.rank }} - {{ card.color }}</p>
+            {% endif %}
+            {% if card.card_type == "Admiral" %}
+            <p class="card-rank admiral">{{ card.card_type }}</p>
+            {% endif %}
+              <input type="hidden" name="card_index" value="{{loop.index0}}" />
           </div>
-          {% endfor %} {% endif %} {% endfor %}
+          {% endfor %}
         </div>
-      </div>
-    </div>
+        </form>
+          {% endif %} {% endfor %}
+        </div>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='game.js') }}"
