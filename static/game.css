@@ -85,6 +85,17 @@ p.lead {
   padding: 10px;
   height: 175px;
 }
+.field {
+  width: 100px;
+  margin-top: 20px;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: rgb(37, 53, 49);
+  display: inline-block;
+  vertical-align: top;
+}
 .player-cards {
   display: flex;
   justify-content: space-evenly;

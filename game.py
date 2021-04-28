@@ -40,8 +40,10 @@ class Player:
         # self.draw_card()
         return self
 
-    def draw_card(self):
-        print('called the draw_card() function.... but it isn\'t built yet')
+    def draw_card(self, game):
+        if game.draw_pile:
+            popped = game.draw_pile.pop()
+            self.hand.append(popped)
         return self
 
     def play_merchant_ship(self, merchants_in_hand, game):
@@ -203,6 +205,16 @@ class Game:
                 print(self.play_field)
         return self
 
+    def next_player(self, player_idx):
+        current_player = self.players[player_idx]
+        if player_idx < len(self.players) - 1:
+            next_player = self.players[player_idx + 1]
+        else:
+            next_player = self.players[0]
+        if current_player.hand:
+            current_player.isTurn = False
+            next_player.isTurn = True
+        pass
 
 # game1 = Game()
 # game1.setup()

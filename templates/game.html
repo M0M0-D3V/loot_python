@@ -51,7 +51,7 @@
       <div id="merchant-ships">
         <p>merchant ships</p>
         {% for merchant in play_field %}
-        <div class="merchant">{{ merchant.card_type }} - {{ merchant.rank }} - Gold</div>
+        <div class="field merchant">{{ merchant.card_type }} - {{ merchant.rank }} - Gold</div>
         {% else %}
         <h5 id="play-merchant">No Merchant ships in play</h5>
         {% endfor %}
