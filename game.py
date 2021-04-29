@@ -205,6 +205,29 @@ class Game:
                 print(self.play_field)
         return self
 
+    def process_turn(self, player, player_idx, card_idx):
+        card_played = player.hand[card_idx]
+        # if merchant ship
+        if card_played.card_type == "Merchant Ship":
+            self.process_merchant_ship(player, player_idx, card_idx)
+        # if pirate ship
+        elif card_played.card_type == "Pirate Ship":
+            self.process_pirate_ship(player, player_idx, card_idx)
+        return self
+
+    def process_merchant_ship(self, player, player_idx, card_idx):
+        removed_card = player.hand.pop(card_idx)
+        self.play_field.append(removed_card)
+        player.draw_card(self)
+        self.next_player(player_idx)
+        return self
+
+    def process_pirate_ship(self, player, player_idx, card_idx):
+        if self.play_field:
+            # which merchant ship are they attacking
+            pass
+        return self
+
     def next_player(self, player_idx):
         current_player = self.players[player_idx]
         if player_idx < len(self.players) - 1:
@@ -214,7 +237,9 @@ class Game:
         if current_player.hand:
             current_player.isTurn = False
             next_player.isTurn = True
-        pass
+        else:
+            print("game is over because player used up all their cards")
+        return self
 
 # game1 = Game()
 # game1.setup()

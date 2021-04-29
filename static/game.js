@@ -20,7 +20,6 @@ $(document).ready(function () {
       message = "you choose not to play";
     }
     console.log(message);
-    // $(this).trigger().submit();
   });
 
   // every jquery above this line

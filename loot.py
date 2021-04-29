@@ -62,27 +62,9 @@ def new_game():
 def player_action(player_idx):
     global game
     current_player = game.players[int(player_idx)]
-    # if int(player_idx) < len(game.players):
-    #     next_player = game.players[int(player_idx) + 1]
-    # else:
-    #     next_player = game.players[0]
-    card_idx = int(request.form['card_index'])
-    card_played = current_player.hand[card_idx]
-    print(f"card number was: {request.form['card_index']}")
-    print(f"player {current_player.name} played card {card_played.card_type}")
-    # check if card played is merchant or pirate
-    if card_played.card_type == "Merchant Ship":
-        removed_card = current_player.hand.pop(card_idx)
-        game.play_field.append(removed_card)
-        current_player.draw_card(game)
-        game.next_player(int(player_idx))
-    elif card_played.card_type == "Pirate Ship":
-        # check if play_field has a merchant ship to attack
-        pass
-    # pop from hand the index received from form
-    # add the return from pop into play_field
-    # check if len(draw_pile) > 0 then prompt player to draw card
-    # redirect to draw card method
+    game.process_turn(current_player, int(player_idx),
+                      int(request.form['card_index']))
+
     # if drawpile is empty, then change isTurn false and switch true to next player
     return redirect("/game")
 
