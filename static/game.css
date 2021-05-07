@@ -143,3 +143,9 @@ span {
   color: greenyellow;
   font-weight: bold;
 }
+
+/* utility classes */
+.opaque-white {
+  background-color: white;
+  opacity: 0.1;
+}

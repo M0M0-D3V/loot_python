@@ -22,5 +22,10 @@ $(document).ready(function () {
     console.log(message);
   });
 
+  $(".cards").click(function() {
+    if(confirm("Draw a card?")) {
+      $(this).trigger()
+    }
+  })
   // every jquery above this line
 });

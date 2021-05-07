@@ -18,7 +18,7 @@
       <div id="players">
         {% for player in players %}
         <p class="lead">
-          {{ player.name }} {% if player.isTurn == True %}
+          {{ player.name }} - {{player.total}}{% if player.isTurn == True %}
           <span>Turn to Play</span>
           {% endif %}
         </p>

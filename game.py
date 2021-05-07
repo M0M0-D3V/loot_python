@@ -207,19 +207,30 @@ class Game:
 
     def process_turn(self, player, player_idx, card_idx):
         card_played = player.hand[card_idx]
+        print("made it to process_turn method")
         # if merchant ship
         if card_played.card_type == "Merchant Ship":
+            print("okay it is a merchant ship...")
             self.process_merchant_ship(player, player_idx, card_idx)
         # if pirate ship
         elif card_played.card_type == "Pirate Ship":
             self.process_pirate_ship(player, player_idx, card_idx)
+        print("okay sending back completely to return to route to redirect to /game")
         return self
 
     def process_merchant_ship(self, player, player_idx, card_idx):
+        print("made it to process merchant ship method")
         removed_card = player.hand.pop(card_idx)
+        print("********* removed card from hand ********")
         self.play_field.append(removed_card)
+        print("********* add card from hand to field ********")
         player.draw_card(self)
+        print("********* player draws card ********")
+        player.last_played = removed_card
+        print("********* add removed card to player's last played ********")
+        print("******** running next player method ********")
         self.next_player(player_idx)
+        print("sending back self from merchant ship method")
         return self
 
     def process_pirate_ship(self, player, player_idx, card_idx):
@@ -229,6 +240,7 @@ class Game:
         return self
 
     def next_player(self, player_idx):
+        print("******** running next player method ***********")
         current_player = self.players[player_idx]
         if player_idx < len(self.players) - 1:
             next_player = self.players[player_idx + 1]

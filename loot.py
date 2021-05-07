@@ -44,13 +44,6 @@ def start_game():
     return render_template("game.html", players=game.players, num=session['num_players'], draw_pile=game.draw_pile, play_field=game.play_field, discard_pile=game.discard_pile)
 
 
-@app.route("/shuffle")
-def shuffle_cards():
-    global game
-    random.shuffle(game.draw_pile)
-    return redirect("/game")
-
-
 @app.route("/newgame")
 def new_game():
     global game
@@ -58,13 +51,25 @@ def new_game():
     return redirect("/")
 
 
+@app.route("/shuffle")
+def shuffle_cards():
+    global game
+    random.shuffle(game.draw_pile)
+    return redirect("/game")
+
+@app.route("/draw")
+def draw_card():
+    global game
+    game.
+
 @app.route("/player_action/<player_idx>", methods=['POST'])
 def player_action(player_idx):
     global game
+    print(f"player_idx is {player_idx}")
     current_player = game.players[int(player_idx)]
     game.process_turn(current_player, int(player_idx),
                       int(request.form['card_index']))
-
+    print("came back from process turn")
     # if drawpile is empty, then change isTurn false and switch true to next player
     return redirect("/game")
 
