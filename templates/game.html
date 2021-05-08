@@ -37,6 +37,8 @@
       <div id="draw-pile">
         <p>Draw</p>
         <div class="cards">
+          <form class="draw-card" action="/draw" method="GET">
+          </form>
           {% for card in draw_pile %}
           <div class="card">{{ card.card_type }}</div>
           {% endfor %}

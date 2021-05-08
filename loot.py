@@ -57,21 +57,26 @@ def shuffle_cards():
     random.shuffle(game.draw_pile)
     return redirect("/game")
 
-@app.route("/draw")
+
+@app.route("/draw", methods=['GET'])
 def draw_card():
     global game
-    game.
+    game.process_draw_card()
+    return redirect("/game")
+
 
 @app.route("/player_action/<player_idx>", methods=['POST'])
 def player_action(player_idx):
     global game
-    print(f"player_idx is {player_idx}")
-    current_player = game.players[int(player_idx)]
-    game.process_turn(current_player, int(player_idx),
-                      int(request.form['card_index']))
-    print("came back from process turn")
-    # if drawpile is empty, then change isTurn false and switch true to next player
-    return redirect("/game")
+    if game.players:
+        print(f"player_idx is {player_idx}")
+        current_player = game.players[int(player_idx)]
+        game.process_turn(current_player, int(player_idx),
+                          int(request.form['card_index']))
+        print("came back from process turn")
+        # if drawpile is empty, then change isTurn false and switch true to next player
+        return redirect("/game")
+    return redirect("/")
 
 
 if __name__ == "__main__":

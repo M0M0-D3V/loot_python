@@ -99,6 +99,7 @@ class Game:
         # each to the play_fiend append should be a nested object with a lit of object attacking pirates which
         self.play_field = []
         self.discard_pile = []
+        self.current_player_idx = 0
 
     def get_players(self, from_form):
         for i in range(int(self.number_of_players)):
@@ -239,18 +240,37 @@ class Game:
             pass
         return self
 
+    def process_draw_card(self):
+        self.whos_turn_is_it()
+        player = self.players[self.current_player_idx]
+        player.draw_card(self)
+        print(f"player has drawn a card")
+        self.next_player(self.current_player_idx)
+        print(f"changed players to next")
+        return self
+
+    def whos_turn_is_it(self):
+        if self.players:
+            for i in range(len(self.players)):
+                if self.players[i].isTurn:
+                    self.current_player_idx = i
+        print("there is no players playing, start a new game")
+        return self
+
     def next_player(self, player_idx):
         print("******** running next player method ***********")
-        current_player = self.players[player_idx]
-        if player_idx < len(self.players) - 1:
-            next_player = self.players[player_idx + 1]
-        else:
-            next_player = self.players[0]
-        if current_player.hand:
-            current_player.isTurn = False
-            next_player.isTurn = True
-        else:
-            print("game is over because player used up all their cards")
+        if self.players:
+            current_player = self.players[player_idx]
+            if player_idx < len(self.players) - 1:
+                next_player = self.players[player_idx + 1]
+            else:
+                next_player = self.players[0]
+            if current_player.hand:
+                current_player.isTurn = False
+                next_player.isTurn = True
+            else:
+                print("game is over because player used up all their cards")
+        print("there is no players playing, start a new game")
         return self
 
 # game1 = Game()

@@ -77,13 +77,13 @@ p.lead {
 #merchant-ships {
   padding: 10px;
   margin-bottom: 20px;
-  height: 370px;
+  height: 325px;
   border-top: 0.5px solid whitesmoke;
   border-bottom: 0.5px solid whitesmoke;
 }
 #actions {
   padding: 10px;
-  height: 175px;
+  height: 225px;
 }
 .field {
   width: 100px;
@@ -99,19 +99,22 @@ p.lead {
 .player-cards {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 175px;
+  overflow-y: scroll;
 }
 .player-action {
 }
 .hand {
   width: 100px;
   margin-top: 20px;
+  margin-right: 10px;
   height: 120px;
   padding: 10px;
   border: 1px solid black;
   border-radius: 15px;
   background-color: blue;
-  /* display: inline-block; */
-  /* vertical-align: top; */
 }
 .hand p {
 }
