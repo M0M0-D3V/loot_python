@@ -225,8 +225,6 @@ class Game:
         print("********* removed card from hand ********")
         self.play_field.append(removed_card)
         print("********* add card from hand to field ********")
-        player.draw_card(self)
-        print("********* player draws card ********")
         player.last_played = removed_card
         print("********* add removed card to player's last played ********")
         print("******** running next player method ********")
